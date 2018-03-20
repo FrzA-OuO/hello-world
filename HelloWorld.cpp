@@ -1,8 +1,9 @@
 #include "HelloWorld.h"
-int main() {
-  HelloWorld hw;
-  
-  hw.print();
-  
-  return 0;
+#include <iostream>
+
+void HelloWorld::Print()
+{
+    std::cout << "Hello, world." << std::endl;
+    
+    return;
 }
