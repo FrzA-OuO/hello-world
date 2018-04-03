@@ -79,9 +79,12 @@ Prime Prime::squareSumBit()
 Prime::~Prime(){}
 
 int main() {
-    Getprime( 9999 );
+    int l = 100, r = 9999;
+    int maxP = -1, cntP = 0, sumP = 0;
     
-    for( int i = 100; i <= 9999; i++ ){
+    Getprime( r );
+    
+    for( int i = l; i <= r; i++ ){
         // Prime pm(113);
         Prime pm( i );
         Prime sb = pm.sumBit();
@@ -89,11 +92,19 @@ int main() {
         Prime ssb = pm.squareSumBit();
         if(pm.isPrime() && sb.isPrime() && mb.isPrime() && ssb.isPrime()){
             //to do sth
-            std::cout << i << " is a SuperPrime\n";
+            // std::cout << i << " is a SuperPrime\n";
+            maxP = i;
+            cntP ++;
+            sumP += i;
         }
+        /* 
         else{
             std::cout << i << " isn't a SuperPrime\n";
-        }
+        } */
     }
+    
+    std::cout << "There's " << cntP << " Superprime(s) in [" << l << ", " << r << "];\n";
+    std::cout << "The sum is " << sumP << ";\n";
+    std::cout << "The maximum Superprime is " << maxP << std::endl;
     return 0;
 }

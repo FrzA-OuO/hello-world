@@ -59,19 +59,28 @@ int isprime(int num) {
 }
 
 int main() {
-    Getprime( 9999 );
+    
+    int l = 100, r = 9999;
+    int maxP = -1, cntP = 0, sumP = 0;
     int i;
-    for( i = 100; i <= 9999; i++ ){
+    
+    Getprime( r );
+        
+    for( i = l; i <= r; i++ ){
+
         if(isprime(i)&&isprime(sum_bit(i))&&isprime(multi_bit(i))&&isprime(square_sum_bit(i))){
       
             //to do sth
             // printf("%d is SuperPrime \n", i);
-            printf("%d 是超级素数 \n", i);
-        }
-        else{
-            // printf("%d not a SuperPrime \n", i);
-            printf("%d 不是超级素数\n", i);
+            maxP = i;
+            cntP ++;
+            sumP += i;
         }
     }
+    
+    printf("There's %d Superprime(s) in [%d, %d];\n", cntP, l, r);
+    printf("The sum is %d;\n", sumP);
+    printf("The maximum Superprime is %d.\n", maxP);
+    
     return 0;
 }

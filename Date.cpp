@@ -11,13 +11,13 @@ class Date {
         void nextDay();
         void previousDay();
         bool equal(Date other);
-        void show();
-        bool isLeap();
+        void show() const;
         bool isLeap( int YY );
     private:
         int year;
         int month;
         int day;
+        bool isLeap() const;
 };
 
 Date::Date( int y, int m, int d )
@@ -32,7 +32,7 @@ Date::~Date(){}
 void Date::nextDay()
 {
     day++;
-    if( isLeap( year )){
+    if( isLeap()){
         if( day > cntl[ month ] ){
             day = 1;
             month ++;
@@ -68,7 +68,7 @@ void Date::previousDay()
             month = 12;
             year --;
         }
-        if( isLeap( year )){
+        if( isLeap( )){
             day = cntl[ month ];
         }
         else{
@@ -97,13 +97,13 @@ bool Date::equal( Date other )
     }
 }
 
-void Date::show()
+void Date::show() const
 {
     std::cout << year << "-" << month << "-" << day << std::endl;
     return;
 }
 
-bool Date::isLeap()
+bool Date::isLeap() const
 {
     if( (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0 ) )
         return true;
