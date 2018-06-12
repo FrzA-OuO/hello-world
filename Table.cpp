@@ -1,6 +1,9 @@
+// ver 0.9
+
 // include part
 #include <iostream>
 #include <vector>
+#include <sstream>
 
 using namespace std;
 
@@ -8,6 +11,27 @@ using namespace std;
 #define MAXROW 2048
 #define MAXCOLUMN 256
 
+/// public function
+void int2str(const int temp_int, string &temp_string)  
+{  
+    stringstream stream;  
+    stream << temp_int;
+    stream >> temp_string;
+}  
+
+void str2int(int &temp_int, const string &temp_string)  
+{  
+    stringstream stream(temp_string);  
+    stream >> temp_int;  
+}  
+
+bool isInArea( int n, int left, int right )
+{
+    if( n >= left && n <= right ){
+        return true;
+    }
+    else return false;
+}
 
 class Table{
     public:
@@ -19,6 +43,7 @@ class Table{
         void addRows( const int n );
         void addColumn();
         void addColumn( const int currentColumn );
+        void addColumns( const int n );
         void set( const int row, const int column, string str);
         void set( const int row, const int column, const int number);
         void delRow( const int currentRow );
@@ -27,6 +52,7 @@ class Table{
         vector< vector<string> > array;
         vector< vector<string> > vrow;
         int _lastrow, _lastcolumn; // the next number of idx
+        
 };
 
 // constructor
@@ -42,9 +68,13 @@ Table::Table()
     _lastrow = 0;
 }
 
-Table::Table( int a, int b){
-    _lastcolumn = b;
-    _lastrow = a;
+Table::Table( int a, int b)
+{
+    _lastcolumn = 0;
+    _lastrow = 0;
+    
+    addRows( a );
+    addColumns( b );
 }
 
 void Table::show() const
@@ -56,7 +86,7 @@ void Table::show() const
                 cout << vrow[ i ][ j ];
             }
             else{
-                cout << " | " << vrow[ i ][ j ];
+                cout << "\t| " << vrow[ i ][ j ];
             }
         }
         cout << endl;
@@ -73,13 +103,6 @@ void Table::addRow()
 
 void Table::addColumn()
 {
-    /*
-    vector<string>::iterator it;
-
-    for(it=it.begin();it!=it.end();it++){
-        it.push_back("");
-    }
-    */
     
     for( int i = 0; i < _lastrow; i++ ){
         vrow[ i ].push_back("");
@@ -91,22 +114,92 @@ void Table::addColumn()
 
 void Table::addRow( const int currentRow )
 {
-    vector <string> tv( _lastcolumn );
-    vrow.insert( vrow.begin() + (currentRow-1), tv );
+    if( isInArea( currentRow-1, 0, _lastrow - 1) ){
+        vector <string> tv( _lastcolumn );
+        vrow.insert( vrow.begin() + (currentRow-1), tv );
+    }
+    else{
+        cout << "Error: Unexpected Input: \"" << currentRow << '\"' << endl;
+    }
 }
 
-void Table::addColumn( const int currentColumn ){
+void Table::addColumn( const int currentColumn )
+{
     // vector<string>::iterator it;
+    if( isInArea( currentColumn - 1, 0, _lastcolumn - 1) ){
+        for( int i = 0; i < _lastrow; i++ ){
+            vrow[ i ].insert( vrow[ i ].begin() + (currentColumn-1), "");
+        }
+    
+        _lastcolumn++;
+    }
+    else{
+        cout << "Error: Unexpected Input: \"" << currentColumn << '\"' << endl;
+    }
+}
 
+void Table::addRows( const int n )
+{
+    _lastrow += n;
+    
+    for( int i = 1; i <= n; i++ ){
+        vector <string> tv(_lastcolumn);
+        vrow.push_back( tv );
+    }
+}
+
+void Table::addColumns( const int n )
+{
     for( int i = 0; i < _lastrow; i++ ){
-        vrow[ i ].insert( vrow[ i ].begin() + (currentColumn-1), "");
+        for( int j = 1; j <= n; j++ ){
+            vrow[ i ].push_back("");
+        }
     }
     
-    _lastcolumn++;
+        _lastcolumn++;
 }
 
-int main() {
-  cout << "go" << endl;
+void Table::set( const int row, const int column, string str)
+{
+    vrow[ row - 1 ][ column - 1 ] = str;
+}
+
+void Table::set( const int row, const int column, const int number)
+{
+    string str;
+    int2str( number, str );
+    vrow[ row - 1 ][ column - 1 ] = str;
+}
+
+void Table::delRow( const int currentRow )
+{
+    if( isInArea( currentRow - 1, 0, _lastrow - 1 ) ){
+        vrow.erase( vrow.begin() + (currentRow - 1) );
+        _lastrow--;
+    }
+    else{
+        cout << "Error: Unexpected Input: \"" << currentRow << '\"' << endl;
+    }
+}
+
+void Table::delColumn( const int currentColumn)
+{
+    
+    if( isInArea( currentColumn - 1, 0, _lastcolumn - 1 )){
+        for( int i = 0; i < _lastrow; i++ ){
+            vrow[ i ].erase( vrow[ i ].begin() + (currentColumn-1));
+        }
+
+        _lastcolumn--;
+    }
+    else{
+        cout << "Error: Unexpected Input: \"" << currentColumn << '\"' << endl;
+    }
+}
+
+
+int main() 
+{
   Table tb;
   tb.show();
   tb.addRow();
@@ -115,7 +208,7 @@ int main() {
   tb.show();
   tb.addColumn();
   tb.show();
-  /* 
+  
   Table tb1(5,5);
   tb1.show();
   tb1.set(1,1,30);
@@ -125,6 +218,6 @@ int main() {
   tb1.show();
   tb1.delColumn(1);
   tb1.show();
-  */
+  
   return 0;
 }
