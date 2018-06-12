@@ -157,6 +157,7 @@ void Table::addColumns( const int n )
     }
     
         _lastcolumn++;
+
 }
 
 void Table::set( const int row, const int column, string str)
