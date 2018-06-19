@@ -49,7 +49,7 @@ class Table{
         void delRow( const int currentRow );
         void delColumn( const int currentColumn);
     private:
-        vector< vector<string> > array;
+        // vector< vector<string> > array;
         vector< vector<string> > vrow;
         int _lastrow, _lastcolumn; // the next number of idx
         
@@ -155,8 +155,7 @@ void Table::addColumns( const int n )
             vrow[ i ].push_back("");
         }
     }
-    
-        _lastcolumn++;
+    _lastcolumn += n;
 
 }
 
