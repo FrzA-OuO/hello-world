@@ -38,7 +38,7 @@ static void print_usage( char* argv[] ) {
     printf( "\noriginUnit           : Unit to be converted" );
     printf( "\nexceptUnit           : Unit want to convert to" );
     printf( "\n   unittype:" );
-    printf( "\n-weight              : We accept: t, kg, g, mg, mug, μg, q, lb, oz, ct, gr," );
+    printf( "\n-weight              : We accept: t, kg, g, mg, mug, μg, q, lb, oz, ct, gr, dr," );
     printf( "\n                       dan, jin, jin(tw), liang, qian" );
     printf( "\n-length              : We accept: km, m, dm, cm, mm, μm, mum, nm, nmi, mi, fur," ); 
     printf( "\n                       fm, yd, ft, in, gongli, li, zhang, chi, cun, fen, lii, hao" );
@@ -58,9 +58,10 @@ int main(int argc, char* argv[]) //（参数个数，指向字符串的指针，
     weight[ "μg" ] = 0.000001;
     weight[ "q" ] = 100000;
     weight[ "lb" ] = 453.59237;
-    weight[ "oz" ] = 28.3495231;
+    weight[ "oz" ] = weight[ "lb" ] / 16;
     weight[ "ct" ] = 0.2;
     weight[ "gr" ] = 0.06479891;
+    weight[ "dr" ] = weight[ "oz" ] / 16;
     weight[ "dan" ] = 50000;
     weight[ "jin" ] = 500;
     weight[ "qian" ] = 5;
