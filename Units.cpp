@@ -118,27 +118,39 @@ int main(int argc, char* argv[]) //（参数个数，指向字符串的指针，
     tunit = argv[ 4 ];
     char strTtypeunit[ 150 ];
     strcpy( strTtypeunit, argv[ 1 ] );
-    
-    dosomething d;
-    
-    if( strcmp( strTtypeunit, "-weight" ) == 0 ){
-        d.doing( weight, number, ounit, tunit );
-    }
-    else if( strcmp( strTtypeunit, "-length" ) == 0 ){
-        d.doing( length, number, ounit, tunit );
-    }
-    else if( strcmp( strTtypeunit, "-pressure" ) == 0 ){
-        d.doing( pressure, number, ounit, tunit );
-    }
-    else if( strcmp( strTtypeunit, "-force" ) == 0 ){
-        d.doing( force, number, ounit, tunit );
-    }
+    map<string, double> ::iterator it0 = weight.find(ounit);
+	map<string, double> ::iterator it00 = weight.find(tunit);
+	map<string, double> ::iterator it1 = length.find(ounit);
+	map<string, double> ::iterator it11 = length.find(tunit);
+	map<string, double> ::iterator it2 = pressure.find(ounit);
+	map<string, double> ::iterator it22= pressure.find(tunit);
+	map<string, double> ::iterator it3 = force.find(ounit);
+	map<string, double> ::iterator it33 = force.find(tunit);
+    if (it0 != weight.end() || it1 != length.end() || it2 != pressure.end() || it3 != force.end()||it00 != weight.end() ||
+		it11 != length.end() || it22 != pressure.end() ||it33 != force.end()){
+        dosomething d;
+
+        if( strcmp( strTtypeunit, "-weight" ) == 0 ){
+            d.doing( weight, number, ounit, tunit );
+        }
+        else if( strcmp( strTtypeunit, "-length" ) == 0 ){
+            d.doing( length, number, ounit, tunit );
+        }
+        else if( strcmp( strTtypeunit, "-pressure" ) == 0 ){
+            d.doing( pressure, number, ounit, tunit );
+        }
+        else if( strcmp( strTtypeunit, "-force" ) == 0 ){
+            d.doing( force, number, ounit, tunit );
+        }
+        else{
+            printf( "Error: unrecognized unittype: %s\n\n", strTtypeunit );
+            print_usage( argv );
+            exit( 0 );
+        }
+    } 
     else{
-        printf( "Error: unrecognized unittype: %s\n\n", strTtypeunit );
-        print_usage( argv );
-        exit( 0 );
-    }
-        
+        printf("It's a wrong data.\n");
+    }  
     return 0;
 }
 //注意 ： argv[0]    是  ./filename
