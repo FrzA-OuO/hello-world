@@ -1,0 +1,28 @@
+﻿<Window x:Class="UnitConverterGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UnitConverterGUI"
+        mc:Ignorable="d"
+        Title="单位转换" Height="400" Width="400" Loaded="Window_Loaded">
+
+    <Window.Resources>
+        <!--local:UnitArr x:Key="UnitCols"/ -->
+    </Window.Resources>
+    <Grid>
+        <TextBox x:Name="number1" HorizontalAlignment="Left" Height="23" Margin="196.139,165.679,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" GotFocus="number1_GotFocus" Text="0"/>
+        <Button x:Name="converterButtun" Content="转换" HorizontalAlignment="Left" Margin="143.928,293.716,0,0" VerticalAlignment="Top" Width="75" Click="converterButtun_Click"/>
+        <ComboBox x:Name="unitSelect1" DisplayMemberPath="Display" SelectedValuePath="Arg" HorizontalAlignment="Left" Margin="40.751,165.679,0,0" VerticalAlignment="Top" Width="120">
+           
+        </ComboBox>
+        <ComboBox x:Name="unitSelect2" DisplayMemberPath="Display" SelectedValuePath="Arg" HorizontalAlignment="Left" Margin="40.751,222.861,0,0" VerticalAlignment="Top" Width="120">
+           
+        </ComboBox>
+        <TextBox x:Name="number2" HorizontalAlignment="Left" Height="20.999" Margin="196.138,222.862,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120.001" GotFocus="number2_GotFocus" Background="White" Text="0"/>
+        <ComboBox x:Name="typeSelect" DisplayMemberPath="Display" SelectedValuePath="Arg" HorizontalAlignment="Left" Margin="130.254,81.148,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="typeSelect_SelectionChanged">
+            
+        </ComboBox>
+
+    </Grid>
+</Window>
