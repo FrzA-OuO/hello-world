@@ -42,7 +42,7 @@ static void print_usage( char* argv[] ) {
     printf( "\n                       dan, jin, jin(tw), liang, qian" );
     printf( "\n-length              : We accept: km, m, dm, cm, mm, μm, mum, nm, nmi, mi, fur," ); 
     printf( "\n                       fm, yd, ft, in, gongli, li, zhang, chi, cun, fen, lii, hao" );
-    printf( "\n-force            : We accept: N, dyn, lbf" ); 
+    printf( "\n-force               : We accept: N, dyn, lbf" ); 
     printf( "\n-pressure            : We accept: pa, mpa, psi" ); 
     printf( "\nexample: %s -weight 10 kg g", argv[ 0 ]);
 }
