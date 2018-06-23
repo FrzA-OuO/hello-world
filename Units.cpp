@@ -5,7 +5,7 @@
 //其它单位：md, cp,......
 //还有很多单位转换，有些单位是其它单位组合出来的
 
-// Cooperate with FingerBlack (https://github.com/FingerBlack/)
+// Cooperate with FingerBlack ( https://github.com/FingerBlack/ )
 #include <map>
 #include <cstdio>
 #include <cstring>
@@ -70,12 +70,12 @@ int main(int argc, char* argv[]) //（参数个数，指向字符串的指针，
     
     // force
     force[ "N" ] = 1; // 1 N = 1 kg*m/s^2
-    force[ "dyn" ] = 1/100000; // 1 dyn = 1 g·cm/s2
+    force[ "dyn" ] = 1.0/100000; // 1 dyn = 1 g·cm/s2
     force[ "lbf" ] = ((weight[ "lb" ]/1000) * 9.80665); // 1 lbf = 0.45359237 kg × 9.80665 m/s2 = 4.4482216152605
 
     //length
-    length[ "km" ] = 1000;
-    length[ "m" ] = 1;
+    length[ "km" ] = 1000.0;
+    length[ "m" ] = 1.0;
     length[ "dm" ] = 0.1;
     length[ "cm" ] = 0.01;
     length[ "mm" ] = 0.001;
@@ -91,12 +91,12 @@ int main(int argc, char* argv[]) //（参数个数，指向字符串的指针，
     length[ "in" ] = 0.0254;
     length[ "gongli" ] = 1000;
     length[ "li" ] = 500;
-    length[ "zhang" ] = 10/3;
-    length[ "chi" ] = 1/3;
-    length[ "cun" ] = 1/30;
-    length[ "fen" ] = 1/300;
-    length[ "lii" ] = 1/3000;
-    length[ "hao" ] = 1/30000;
+    length[ "zhang" ] = 10.0/3;
+    length[ "chi" ] = 1.0/3;
+    length[ "cun" ] = 1.0/30;
+    length[ "fen" ] = 1.0/300;
+    length[ "lii" ] = 1.0/3000;
+    length[ "hao" ] = 1.0/30000;
     
     //pressure = force / (length*length)
     pressure[ "pa" ] = 1; // = 1 N / 1 m^2
